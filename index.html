@@ -208,6 +208,34 @@ canvas.fx { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events
   .room { padding-block: 64px 80px; gap: 40px; }
 }
 
+/* Full-screen card: everything inside scales with the card's width (cqw),
+   and the width is capped so the whole card fits the screen height.
+   --k is the card content's height / width ratio, measured in Chrome. */
+@supports (container-type: inline-size) {
+  .room { padding-top: 0; }
+  .hero {
+    --k: 1.82;
+    --fit: calc((100vh - 40px - env(safe-area-inset-top) - 114px) / var(--k) + 40px);
+    min-height: 100vh; min-height: 100svh;
+    display: flex; align-items: center; justify-content: center;
+    padding-block: calc(20px + env(safe-area-inset-top)) 20px;
+  }
+  @supports (height: 100svh) { .hero { --fit: calc((100svh - 40px - env(safe-area-inset-top) - 114px) / var(--k) + 40px); } }
+  .card { container-type: inline-size; width: min(100% - 28px, max(260px, var(--fit))); margin-inline: auto; padding: 46px 20px 40px; }
+  .orn { width: 37.5cqw; height: 3.5cqw; margin-block: 4cqw; }
+  .orn.wide { width: 52.5cqw; }
+  h1.script { font-size: 16cqw; padding-inline: 0; white-space: nowrap; }
+  .caps.small { font-size: max(10px, 3.75cqw); margin-top: 4.5cqw; }
+  h2.caps.big { font-size: 7.5cqw; margin-top: 2cqw; }
+  .of { font-size: max(10px, 3.75cqw); gap: 3cqw; margin: 3.5cqw 0 1.5cqw; }
+  .of i { width: 13cqw; }
+  .logo { width: 82.5cqw; margin-top: 2cqw; }
+  .date { font-size: 10.5cqw; margin-top: 1.5cqw; }
+  .day { font-size: max(12px, 4.25cqw); }
+  .save { font-size: 11cqw; }
+  .caps.tiny { font-size: max(9px, 2.9cqw); margin-top: 2cqw; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hint, .seal .ring { animation: none; }
   .env-flap, .intro, .pop, .env.open { transition-duration: .01s; transition-delay: 0s; }
@@ -266,6 +294,7 @@ canvas.fx { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events
 </div>
 
 <main class="room" id="room">
+  <div class="hero">
   <article class="card" id="card" aria-label="Invitation to the launch event of Dicey's">
     <span class="lace t"></span><span class="lace b"></span><span class="lace l"></span><span class="lace r"></span>
     <span class="frame"></span><span class="frame two"></span>
@@ -289,6 +318,7 @@ canvas.fx { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events
       <p class="caps tiny">A new dining and pours experience</p>
     </div>
   </article>
+  </div>
 
   <section class="count rise" style="--i:1" aria-label="Countdown to opening day">
     <h3>Opening day is coming</h3>
