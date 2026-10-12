@@ -62,8 +62,9 @@ body {
 }
 .kicker {
   transition: opacity .3s; margin: 0; font-family: var(--caps); font-size: 11px; letter-spacing: .34em; text-transform: uppercase;
-  color: var(--gold-hi); opacity: .9; text-align: center;
+  color: var(--gold-hi); opacity: .9; text-align: center; line-height: 1.5; padding-inline: 16px;
 }
+.kicker span { display: block; margin-top: 4px; font-size: 13px; letter-spacing: .22em; }
 .env { position: relative; width: var(--w); height: calc(var(--w) * 1.18); margin-top: calc(var(--w) * .52); perspective: 1400px; cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .env > * { position: absolute; }
 .env-back { inset: 0; background: linear-gradient(180deg, #6d1a2c, #4a0f1d); border-radius: 3px; box-shadow: 0 30px 60px -18px rgba(0,0,0,.65), 0 0 0 1px rgba(236,209,138,.12); }
@@ -252,7 +253,7 @@ canvas.fx { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events
 <!-- Intro: sealed envelope -->
 <div class="intro" id="intro">
   <div class="env-wrap">
-    <p class="kicker">An invitation from Dicey&rsquo;s</p>
+    <p class="kicker">An invitation from<span>Shivu Dutt and Family!</span></p>
     <div class="env" id="env" role="button" tabindex="0" aria-label="Open the invitation">
       <span class="env-back"></span>
       <span class="env-clip" id="envClip"></span>
