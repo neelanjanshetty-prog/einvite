@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#3a0a15">
 <link rel="icon" href="assets/seal.png">
 <meta property="og:title" content="Dicey's Opening">
-<meta property="og:description" content="You're invited to the grand opening of Dicey's. 16th October 2026.">
+<meta property="og:description" content="You're invited to the launch event of Dicey's. 15th October 2026.">
 <style>:root{color-scheme:dark}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Dicey's Opening</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,8 +39,8 @@ body {
   background: var(--ground);
   color: var(--cream);
   font-family: var(--serif);
-  padding-inline: 16px;
-  padding-block: 0;
+  padding-inline: max(16px, env(safe-area-inset-left)) max(16px, env(safe-area-inset-right));
+  padding-block: 0 env(safe-area-inset-bottom);
   -webkit-text-size-adjust: 100%;
 }
 .defs { position: absolute; width: 0; height: 0; overflow: hidden; }
@@ -56,6 +56,7 @@ body {
 .js .intro { display: grid; }
 .intro.leaving { opacity: 0; pointer-events: none; }
 .env-wrap {
+  --w: min(84vw, 360px, calc((100vh - 210px) / 1.72));
   --w: min(84vw, 360px, calc((100svh - 210px) / 1.72));
   position: relative; display: flex; flex-direction: column; align-items: center; gap: 0;
 }
@@ -81,7 +82,7 @@ body {
 .env.open .env-flap { transform: rotateX(180deg); }
 .env.open { transition: transform 1s cubic-bezier(.55,0,.85,.45) var(--drop-delay, .75s); transform: translateY(var(--drop, 0px)); }
 .env:focus-visible { outline: none; }
-.env-clip { inset: 0; z-index: 2; clip-path: inset(-300vh -300vw 0 -300vw); pointer-events: none; }
+.env-clip { inset: 0; z-index: 2; clip-path: inset(-300vh -300vw 2px -300vw); pointer-events: none; }
 .env-clip .pop { position: absolute; left: 0; top: 0; margin: 0; transform-origin: 0 0; transition: transform 1.25s cubic-bezier(.25,.75,.2,1) .4s; }
 .env-clip .pop.reduced { transition: none; }
 
@@ -146,7 +147,7 @@ body {
 .orn.wide { width: 210px; }
 .for { margin: 0 0 6px; font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 19px; color: var(--ink); overflow-wrap: anywhere; }
 .for span { font-style: normal; letter-spacing: .04em; }
-h1.script { margin: 0; font-family: var(--script); font-weight: 400; font-size: clamp(46px, 13.6vw, 64px); line-height: 1.12; color: var(--ink); text-wrap: balance; padding-inline: 4px; }
+h1.script { margin: 0; font-family: var(--script); font-weight: 400; font-size: clamp(34px, calc((100vw - 92px) / 6.2), 64px); line-height: 1.12; color: var(--ink); text-wrap: balance; padding-inline: 4px; }
 .caps { font-family: var(--caps); text-transform: uppercase; color: var(--ink); margin: 0; }
 .caps.small { font-family: var(--serif); font-weight: 600; font-size: clamp(13px, 3.8vw, 15px); letter-spacing: .3em; margin-top: 18px; padding-left: .3em; }
 h2.caps.big { font-weight: 600; font-size: clamp(22px, 6.2vw, 30px); letter-spacing: .08em; line-height: 1.15; margin-top: 8px; text-wrap: balance; }
@@ -180,7 +181,31 @@ h2.caps.big { font-weight: 600; font-size: clamp(22px, 6.2vw, 30px); letter-spac
 .btn svg { width: 18px; height: 18px; flex: none; }
 .foot { text-align: center; margin: 0; font-family: var(--serif); font-style: italic; font-size: 16px; color: rgba(241,232,214,.65); }
 
+/* "Built by Enness Studio" credit */
+.built-by { align-self: center; display: inline-flex; align-items: center; gap: 10px; padding: 7px 14px; border-radius: 999px; border: 1px solid rgba(201,162,75,.3); background: rgba(20,4,8,.55); text-decoration: none; transition: border-color .2s, background .2s; }
+@media (hover: hover) { .built-by:hover { border-color: rgba(201,162,75,.6); background: rgba(20,4,8,.8); } }
+.built-by span { font-family: var(--caps); font-weight: 600; font-size: 9.5px; letter-spacing: .2em; text-transform: uppercase; color: rgba(241,232,214,.8); white-space: nowrap; }
+.built-by i { width: 1px; height: 14px; background: rgba(201,162,75,.35); }
+.built-by img { width: 64px; height: 30px; object-fit: contain; opacity: .95; }
+
 canvas.fx { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+
+/* Small phones: give the card text more room */
+@media (max-width: 360px) {
+  .card { padding: 46px 18px 40px; }
+  .unit { letter-spacing: .16em; padding-left: .16em; font-size: 11px; }
+  .btn.ghost { font-size: 16px; letter-spacing: .06em; }
+}
+/* Landscape phones: smaller kicker gap so the envelope stays a usable size */
+@media (max-height: 500px) and (orientation: landscape) {
+  .env-wrap { --w: min(84vw, 360px, calc((100vh - 96px) / 1.72)); --w: min(84vw, 360px, calc((100svh - 96px) / 1.72)); }
+  .hint { margin-top: 12px; font-size: 17px; }
+  .room { padding-block: 28px 40px; gap: 28px; }
+}
+/* Larger screens: a little more breathing room */
+@media (min-width: 768px) {
+  .room { padding-block: 64px 80px; gap: 40px; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .hint, .seal .ring { animation: none; }
@@ -240,7 +265,7 @@ canvas.fx { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events
 </div>
 
 <main class="room" id="room">
-  <article class="card" id="card" aria-label="Invitation to the grand opening of Dicey's">
+  <article class="card" id="card" aria-label="Invitation to the launch event of Dicey's">
     <span class="lace t"></span><span class="lace b"></span><span class="lace l"></span><span class="lace r"></span>
     <span class="frame"></span><span class="frame two"></span>
     <svg class="corner tl" aria-hidden="true"><use href="#corner"/></svg>
@@ -252,13 +277,13 @@ canvas.fx { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events
       <svg class="orn" aria-hidden="true" style="margin-top:0"><use href="#orn"/></svg>
       <h1 class="script">You&rsquo;re Invited</h1>
       <p class="caps small">Join us for the</p>
-      <h2 class="caps big">Grand Opening</h2>
+      <h2 class="caps big">Launch Event</h2>
       <p class="of"><i></i>OF<i></i></p>
       <img class="logo" src="assets/logo.png" alt="Dicey&rsquo;s. Good food, better pour&rsquo;s." width="640" height="414">
       <svg class="orn wide" aria-hidden="true"><use href="#orn"/></svg>
       <p class="label">Opening date</p>
-      <p class="date">16th October 2026</p>
-      <p class="day">Friday</p>
+      <p class="date">15th October 2026</p>
+      <p class="day">Thursday</p>
       <svg class="orn" aria-hidden="true"><use href="#orn"/></svg>
       <p class="save">Save the Date</p>
       <p class="caps tiny">A new dining and pours experience</p>
@@ -277,7 +302,7 @@ canvas.fx { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events
   </section>
 
   <section class="actions rise" style="--i:2">
-    <a class="btn primary" id="calBtn" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Dicey%27s%20Grand%20Opening&amp;dates=20261016/20261017&amp;details=Good%20food.%20Better%20pour%27s.%20A%20new%20dining%20and%20pours%20experience.&amp;location=Dicey%27s%2C%20Chikkamagaluru%2C%20Karnataka">
+    <a class="btn primary" id="calBtn" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Dicey%27s%20Launch%20Event&amp;dates=20261015/20261016&amp;details=Good%20food.%20Better%20pour%27s.%20A%20new%20dining%20and%20pours%20experience.&amp;location=Dicey%27s%2C%20Chikkamagaluru%2C%20Karnataka">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="1.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>
       Add to calendar
     </a>
@@ -285,9 +310,15 @@ canvas.fx { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor"/></svg>
       @diceys_chikkamagalur
     </a>
+    <a class="btn ghost" target="_blank" rel="noopener" href="https://share.google/di0474RNOSe6GHHA9">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></svg>
+      View location
+    </a>
   </section>
 
-  <p class="foot rise" style="--i:3">Dicey&rsquo;s &middot; Chikkamagaluru</p>
+  <a class="built-by rise" style="--i:3" href="https://www.ennesstudio.com" target="_blank" rel="noopener noreferrer" aria-label="Built by Enness Studio, visit ennesstudio.com">
+    <span>Built by</span><i aria-hidden="true"></i><img src="assets/enness-studio-logo.png" alt="" width="1920" height="1080">
+  </a>
 </main>
 
 <script>
@@ -406,8 +437,8 @@ canvas.fx { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events
   env.addEventListener('click', openEnv);
   env.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openEnv(); } });
 
-  /* ---- Countdown to 16 Oct 2026, 00:00 IST ---- */
-  var target = new Date('2026-10-16T00:00:00+05:30').getTime();
+  /* ---- Countdown to 15 Oct 2026, 00:00 IST ---- */
+  var target = new Date('2026-10-15T00:00:00+05:30').getTime();
   var els = { D: $('cdD'), H: $('cdH'), M: $('cdM'), S: $('cdS') }, last = {};
   function pad(n) { return n < 10 ? '0' + n : String(n); }
   function set(k, v) {
