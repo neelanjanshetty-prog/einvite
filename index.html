@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#3a0a15">
 <link rel="icon" href="assets/seal.png">
 <meta property="og:title" content="Dicey's Opening">
-<meta property="og:description" content="You're invited to the launch event of Dicey's. 15th October 2026.">
+<meta property="og:description" content="You're invited to the launch event of Dicey's. 15th October 2026, 12:00 PM.">
 <style>:root{color-scheme:dark}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Dicey's Opening</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -312,7 +312,7 @@ canvas.fx { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events
       <img class="logo" src="assets/logo.png" alt="Dicey&rsquo;s. Good food, better pour&rsquo;s." width="640" height="414">
       <svg class="orn wide" aria-hidden="true"><use href="#orn"/></svg>
       <p class="date">15th October 2026</p>
-      <p class="day">Thursday</p>
+      <p class="day">Thursday &middot; 12:00 PM</p>
       <svg class="orn" aria-hidden="true"><use href="#orn"/></svg>
       <p class="save">Save the Date</p>
       <p class="caps tiny">A new dining and pours experience</p>
@@ -332,7 +332,7 @@ canvas.fx { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events
   </section>
 
   <section class="actions rise" style="--i:2">
-    <a class="btn primary" id="calBtn" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Dicey%27s%20Launch%20Event&amp;dates=20261015/20261016&amp;details=Good%20food.%20Better%20pour%27s.%20A%20new%20dining%20and%20pours%20experience.&amp;location=Dicey%27s%2C%20Chikkamagaluru%2C%20Karnataka">
+    <a class="btn primary" id="calBtn" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Dicey%27s%20Launch%20Event&amp;dates=20261015T063000Z/20261015T093000Z&amp;details=Good%20food.%20Better%20pour%27s.%20A%20new%20dining%20and%20pours%20experience.&amp;location=Dicey%27s%2C%20Chikkamagaluru%2C%20Karnataka">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="1.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>
       Add to calendar
     </a>
@@ -467,8 +467,8 @@ canvas.fx { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events
   env.addEventListener('click', openEnv);
   env.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openEnv(); } });
 
-  /* ---- Countdown to 15 Oct 2026, 00:00 IST ---- */
-  var target = new Date('2026-10-15T00:00:00+05:30').getTime();
+  /* ---- Countdown to 15 Oct 2026, 12:00 PM IST ---- */
+  var target = new Date('2026-10-15T12:00:00+05:30').getTime();
   var els = { D: $('cdD'), H: $('cdH'), M: $('cdM'), S: $('cdS') }, last = {};
   function pad(n) { return n < 10 ? '0' + n : String(n); }
   function set(k, v) {
